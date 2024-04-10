@@ -5,6 +5,7 @@ namespace GREVocabulary.Business;
 public class Word
 {
     public int Id { get; set; }
+    [Column(TypeName = "nvarchar(50)")]
     public string GroupName { get; set; }
 
     [Column(TypeName = "nvarchar(350)")]

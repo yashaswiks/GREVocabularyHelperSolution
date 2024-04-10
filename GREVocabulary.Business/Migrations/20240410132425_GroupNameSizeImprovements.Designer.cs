@@ -2,6 +2,7 @@
 using GREVocabulary.Business;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GREVocabulary.Business.Migrations
 {
     [DbContext(typeof(VocabularyHelperDbContext))]
-    partial class VocabularyHelperDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240410132425_GroupNameSizeImprovements")]
+    partial class GroupNameSizeImprovements
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.4");
