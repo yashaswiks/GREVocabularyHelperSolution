@@ -16,7 +16,7 @@ namespace GREVocabulary.Business.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    GroupName = table.Column<string>(type: "TEXT", nullable: true),
+                    GroupId = table.Column<int>(type: "INTEGER", nullable: false),
                     WordToMemorize = table.Column<string>(type: "nvarchar(350)", nullable: true)
                 },
                 constraints: table =>

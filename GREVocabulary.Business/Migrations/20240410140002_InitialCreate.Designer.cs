@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GREVocabulary.Business.Migrations
 {
     [DbContext(typeof(VocabularyHelperDbContext))]
-    [Migration("20240410130854_InitialCreate")]
+    [Migration("20240410140002_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -25,8 +25,8 @@ namespace GREVocabulary.Business.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("GroupName")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("GroupId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("WordToMemorize")
                         .HasColumnType("nvarchar(350)");

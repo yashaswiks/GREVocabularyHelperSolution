@@ -22,8 +22,8 @@ namespace GREVocabulary.Business.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("GroupName")
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<int>("GroupId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("WordToMemorize")
                         .HasColumnType("nvarchar(350)");
