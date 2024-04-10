@@ -1,5 +1,6 @@
-using GREVocabulary.WebApp.Client.Pages;
+using GREVocabulary.Business;
 using GREVocabulary.WebApp.Components;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +8,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();
+
+
+builder.Services.AddDbContext<VocabularyHelperDbContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
 
