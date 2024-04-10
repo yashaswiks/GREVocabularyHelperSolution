@@ -1,0 +1,37 @@
+﻿@rendermode InteractiveServer
+@page "/words"
+
+<h3>Words</h3>
+
+
+<div class="container">
+    <div class="row">
+        @if(WordsByGroup?.Count > 0)
+        {
+            @foreach(var grouping in WordsByGroup)
+            {
+                <div class="col-md-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <h6 class="card-title">Group @grouping.GroupId</h6>
+
+                            <table class="table">
+                                <tbody>
+                                    @foreach (var word in grouping.Words)
+                                    {
+                                        <tr>
+                                            <div class="py-2">
+                                                <button @onkeypress="(e) => OnKeyPressed(e, word)" class="btn btn-light">@word</button>
+                                            </div>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+

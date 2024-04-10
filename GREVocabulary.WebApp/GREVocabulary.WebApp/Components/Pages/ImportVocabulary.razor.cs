@@ -2,7 +2,7 @@ using GREVocabulary.Business.Repository.IRepository;
 using GREVocabulary.Business.Service.IService;
 using Microsoft.AspNetCore.Components;
 
-namespace GREVocabulary.WebApp.Components;
+namespace GREVocabulary.WebApp.Components.Pages;
 
 public partial class ImportVocabulary
 {
