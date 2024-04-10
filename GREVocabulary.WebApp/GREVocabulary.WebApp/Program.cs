@@ -13,6 +13,7 @@ builder.Services.AddRazorComponents()
 
 builder.Services.AddScoped<IDatabaseOptions, DatabaseOptions>();
 builder.Services.AddScoped<IWordsRepository, WordsRepository>();
+builder.Services.AddScoped<IReadCsvService, ReadCsvService>();
 
 var app = builder.Build();
 

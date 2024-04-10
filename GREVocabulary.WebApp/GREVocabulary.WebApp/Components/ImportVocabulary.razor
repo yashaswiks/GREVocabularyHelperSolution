@@ -1,0 +1,19 @@
+﻿@rendermode InteractiveServer
+@page "/import-vocabulary"
+
+<h3>Import Vocabulary</h3>
+
+<PageTitle>Import Vocabulary</PageTitle>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            Total Rows Inserted : @TotalRowsInserted
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <button class="btn btn-primary" @onclick="ImportFromCsvFileAsync">Import from Csv File</button>
+        </div>
+    </div>
+</div>
