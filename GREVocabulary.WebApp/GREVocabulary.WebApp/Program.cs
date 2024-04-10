@@ -1,3 +1,7 @@
+using GREVocabulary.Business.Repository;
+using GREVocabulary.Business.Repository.IRepository;
+using GREVocabulary.Business.Service;
+using GREVocabulary.Business.Service.IService;
 using GREVocabulary.WebApp.Components;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +10,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();
+
+builder.Services.AddScoped<IDatabaseOptions, DatabaseOptions>();
+builder.Services.AddScoped<IWordsRepository, WordsRepository>();
 
 var app = builder.Build();
 
