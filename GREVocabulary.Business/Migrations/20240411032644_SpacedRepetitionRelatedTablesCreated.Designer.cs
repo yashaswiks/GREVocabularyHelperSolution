@@ -3,6 +3,7 @@ using System;
 using GREVocabulary.Business;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GREVocabulary.Business.Migrations
 {
     [DbContext(typeof(VocabularyHelperDbContext))]
-    partial class VocabularyHelperDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240411032644_SpacedRepetitionRelatedTablesCreated")]
+    partial class SpacedRepetitionRelatedTablesCreated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.4");
@@ -59,9 +62,6 @@ namespace GREVocabulary.Business.Migrations
 
                     b.Property<DateTime>("SessionTimestamp")
                         .HasColumnType("TEXT");
-
-                    b.Property<int>("Total")
-                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 

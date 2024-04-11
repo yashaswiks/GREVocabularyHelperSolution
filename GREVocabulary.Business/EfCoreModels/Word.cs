@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace GREVocabulary.Business;
+namespace GREVocabulary.Business.EfCoreModels;
 
 public class Word
 {
