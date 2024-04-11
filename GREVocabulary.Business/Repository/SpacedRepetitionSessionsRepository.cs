@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using GREVocabulary.Business.Models;
 using GREVocabulary.Business.Repository.IRepository;
 using GREVocabulary.Business.Service.IService;
 using Microsoft.Data.Sqlite;
@@ -35,5 +36,16 @@ public class SpacedRepetitionSessionsRepository : ISpacedRepetitionSessionsRepos
         var newSessionId = await _db.ExecuteScalarAsync<int?>(sql, param);
         _db.Close();
         return newSessionId;
+    }
+
+    public async Task<List<SpacedRepetitionSessionsModel>> GetAllAsync()
+    {
+        using IDbConnection _db = new SqliteConnection(_databaseOptions.ConnectionString);
+        _db.Open();
+
+        var sql = "SELECT * FROM SpacedRepetitionSessions";
+        var sessions = await _db.QueryAsync<SpacedRepetitionSessionsModel>(sql);
+        _db.Close();
+        return sessions?.ToList();
     }
 }

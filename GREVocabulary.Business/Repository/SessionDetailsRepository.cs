@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using GREVocabulary.Business.Models;
 using GREVocabulary.Business.Repository.IRepository;
 using GREVocabulary.Business.Service.IService;
 using Microsoft.Data.Sqlite;
@@ -13,6 +14,25 @@ public class SessionDetailsRepository : ISessionDetailsRepository
     public SessionDetailsRepository(IDatabaseOptions databaseOptions)
     {
         _databaseOptions = databaseOptions;
+    }
+
+    public async Task<List<SessionDetailsModel>> GetBySessionIdAsync(int sessionId)
+    {
+        if (sessionId is 0) return null;
+
+        using IDbConnection _db = new SqliteConnection(_databaseOptions.ConnectionString);
+
+        var sql = @"SELECT Id, GroupId, WordToMemorize, Red, Green, SpacedRepetitionSessionId
+                        FROM SessionDetails
+                        WHERE SpacedRepetitionSessionId = @SpacedRepetitionSessionId;";
+
+        _db.Open();
+
+        var result = await _db.QueryAsync<SessionDetailsModel>(sql, new { SpacedRepetitionSessionId = sessionId });
+
+        _db.Close();
+
+        return result?.ToList();
     }
 
     public async Task<int?> InsertSessionWordAsync(int spacedRepetitionSessionId,

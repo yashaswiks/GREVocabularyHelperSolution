@@ -1,0 +1,35 @@
+﻿@page "/sessiondetails/{SessionId:int}"
+
+<h3>Session Details</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Word</th>
+        </tr>
+    </thead>
+    @if (SessionWords?.Count > 0)
+    {
+        <tbody>
+            @foreach (var word in SessionWords)
+            {
+                <tr>
+                    @if(word.Green is 1)
+                    {
+                        <td><p class="text-success">@word.WordToMemorize</p></td>
+                    }
+                    else if(word.Red is 1)
+                    {
+                        <td><p class="text-danger">@word.WordToMemorize</p></td>
+                    }
+                    else
+                    {
+                        <td><p>@word.WordToMemorize</p></td>
+                    }
+                </tr>
+            }
+        </tbody>
+    }
+</table>
+
+

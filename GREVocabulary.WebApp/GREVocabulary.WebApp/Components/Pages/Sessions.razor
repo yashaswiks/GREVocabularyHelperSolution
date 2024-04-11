@@ -1,0 +1,34 @@
+﻿@rendermode InteractiveServer
+
+@page "/sessions"
+
+<h3>Sessions</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Session Timestamp</th>
+            <th scope="col">Correct</th>
+            <th scope="col">Wrong</th>
+            <th scope="col">Total</th>
+            <th scope="col">View</th>
+        </tr>
+    </thead>
+    @if(AllSessions?.Count > 0)
+    {
+        <tbody>
+            @foreach(var session in AllSessions)
+            {
+                <tr>
+                    <td>@session.SessionTimestamp</td>
+                    <td>@session.Green</td>
+                    <td>@session.Red</td>
+                    <td>@session.Total</td>
+                    <td><a href=@($"/sessiondetails/{session.Id}")>View</a></td>
+                </tr>
+            }
+        </tbody>
+    }
+</table>
+
+
