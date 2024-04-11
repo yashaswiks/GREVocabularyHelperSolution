@@ -35,14 +35,16 @@ public class SessionDetailsRepository : ISessionDetailsRepository
 
             _db.Open();
 
-            var affectedRows = await _db.ExecuteAsync(sql, new
+            var param = new
             {
                 word.GroupId,
                 word.WordToMemorize,
                 word.Red,
                 word.Green,
-                spacedRepetitionSessionId
-            });
+                SpacedRepetitionSessionId = spacedRepetitionSessionId
+            };
+
+            var affectedRows = await _db.ExecuteAsync(sql, param);
 
             _db.Close();
 
