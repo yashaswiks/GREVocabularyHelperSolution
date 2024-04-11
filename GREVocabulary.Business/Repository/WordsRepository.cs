@@ -15,13 +15,23 @@ public class WordsRepository : IWordsRepository
         _databaseOptions = databaseOptions;
     }
 
-    public async Task<List<WordDetailsModel>> GetAllAsync()
+    public async Task<List<WordDetailsModel>> GetAllAsync(int startingGroupingId, int endingGroupId)
     {
+
+        if (startingGroupingId is 0 || endingGroupId is 0) return null;
+        if (startingGroupingId > endingGroupId) return null;
+
+
         var wordDetails = new List<WordDetailsModel>();
 
-        var allGroupIds = await GetAllGroupIds();
+        var allGroupIds = new List<int>();
 
-        if (allGroupIds is null || allGroupIds.Count is 0) return null;
+        for (var i = startingGroupingId; i <= endingGroupId; i++)
+        {
+            allGroupIds.Add(i);
+        }
+
+        if (allGroupIds.Count is 0) return null;
 
         foreach (var groupId in allGroupIds)
         {

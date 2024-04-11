@@ -10,15 +10,23 @@ public partial class Words
     private IWordsRepository _wordsRepository { get; set; }
 
     private List<StylizedWords> WordsByGroup { get; set; } = new();
+    private List<int> AllGroupIds { get; set; } = new();
+    private int StartingGroupId { get; set; }
+    private int EndingGroupId { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        await PopulateWordsList();
+        AllGroupIds = await _wordsRepository.GetAllGroupIds();
     }
 
     private async Task PopulateWordsList()
     {
-        var words = await _wordsRepository.GetAllAsync();
+        WordsByGroup.Clear();
+
+        if (StartingGroupId is 0 || EndingGroupId is 0) return;
+        if (StartingGroupId > EndingGroupId) return;
+
+        var words = await _wordsRepository.GetAllAsync(StartingGroupId, EndingGroupId);
 
         if (words is null || words.Count is 0) return;
 

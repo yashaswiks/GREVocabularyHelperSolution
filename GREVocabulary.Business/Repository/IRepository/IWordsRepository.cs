@@ -6,7 +6,7 @@ public interface IWordsRepository
 
     Task<List<int>> GetAllGroupIds();
 
-    Task<List<WordDetailsModel>> GetAllAsync();
+    Task<List<WordDetailsModel>> GetAllAsync(int startingGroupingId, int endingGroupId);
 
     Task<List<string>> GetWordsBelongingToGroupIdAsync(int groupId);
 }

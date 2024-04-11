@@ -6,6 +6,35 @@
 
 <div class="container">
     <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="startingGroupId">Starting Group ID</label>
+                <InputSelect @bind-Value="@StartingGroupId" id="startingGroupId" class="form-control">
+                    <option value="0" selected>--Select Starting Group ID--</option>
+                    @foreach(var group in AllGroupIds)
+                    {
+                        <option value="@group">@group</option>
+                    }
+                </InputSelect>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="endingGroupId">Ending Group ID</label>
+                <InputSelect @bind-Value="@EndingGroupId" id="endingGroupId" class="form-control">
+                    <option value="0" selected>--Select Ending Group ID--</option>
+                    @foreach (var group in AllGroupIds)
+                    {
+                        <option value="@group">@group</option>
+                    }
+                </InputSelect>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <button @onclick="PopulateWordsList" class="btn btn-primary">Populate Words</button>
+        </div>
+    </div>
+    <div class="row">
         @if(WordsByGroup?.Count > 0)
         {
             @foreach(var grouping in WordsByGroup)
@@ -31,6 +60,16 @@
                     </div>
                 </div>
             }
+        }
+        else
+        {
+            <div class="col-md-12">
+                <div class="pt-2">
+                    <div class="alert alert-info" role="alert">
+                        No words to display. Please select a starting and ending group ID and click on the Populate Words button.
+                    </div>
+                </div>
+            </div>
         }
     </div>
 </div>
