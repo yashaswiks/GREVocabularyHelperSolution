@@ -14,6 +14,8 @@ builder.Services.AddRazorComponents()
 builder.Services.AddScoped<IDatabaseOptions, DatabaseOptions>();
 builder.Services.AddScoped<IWordsRepository, WordsRepository>();
 builder.Services.AddScoped<IReadCsvService, ReadCsvService>();
+builder.Services.AddScoped<ISpacedRepetitionSessionsRepository, SpacedRepetitionSessionsRepository>();
+builder.Services.AddScoped<ISessionDetailsRepository, SessionDetailsRepository>();
 
 var app = builder.Build();
 
