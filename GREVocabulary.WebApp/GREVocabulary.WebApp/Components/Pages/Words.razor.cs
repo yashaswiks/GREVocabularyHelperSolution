@@ -1,3 +1,4 @@
+using GREVocabulary.Business.Helpers;
 using GREVocabulary.Business.Repository.IRepository;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
@@ -48,6 +49,14 @@ public partial class Words
                 GroupId = word.GroupId,
                 Words = wordDetails
             });
+        }
+    }
+
+    private void ShuffleWords()
+    {
+        foreach (var word in WordsByGroup)
+        {
+            word.Words.Shuffle();
         }
     }
 

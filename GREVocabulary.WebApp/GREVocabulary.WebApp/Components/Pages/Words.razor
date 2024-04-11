@@ -34,7 +34,12 @@
             <button @onclick="PopulateWordsList" class="btn btn-primary">Populate Words</button>
         </div>
     </div>
-    <div class="row">
+    <div class="row pt-2">
+        <div class="col-md-3">
+            <button class="btn btn-warning btn-sm" @onclick="ShuffleWords">Shuffle Words within Group</button>
+        </div>
+    </div>
+    <div class="row pt-4">
         @if(WordsByGroup?.Count > 0)
         {
             @foreach(var grouping in WordsByGroup)
