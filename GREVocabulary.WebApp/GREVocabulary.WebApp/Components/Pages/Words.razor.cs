@@ -40,23 +40,55 @@ public partial class Words
                 wordDetails.Add(new WordDetail
                 {
                     WordToMemorize = w,
-                    WordBootstrapClass = "btn btn-light"
+                    WordBootstrapClass = "btn btn-light",
+                    GroupId = word.GroupId
                 });
             }
 
             WordsByGroup.Add(new StylizedWords
             {
-                GroupId = word.GroupId,
                 Words = wordDetails
             });
         }
     }
 
-    private void ShuffleWords()
+    private void ShuffleWordsWithinGroup()
     {
+        if (WordsByGroup is null || WordsByGroup.Count is 0) return;
+
         foreach (var word in WordsByGroup)
         {
             word.Words.Shuffle();
+        }
+    }
+
+    private void ShuffleEverything()
+    {
+        if (WordsByGroup is null || WordsByGroup.Count is 0) return;
+
+        int noOfLists = WordsByGroup.Count;
+
+        var combinedWords = new List<WordDetail>();
+
+        foreach (var word in WordsByGroup)
+        {
+            combinedWords.AddRange(word.Words);
+        }
+
+        combinedWords.Shuffle();
+
+        var resplitList = combinedWords.SplitList(noOfLists);
+
+        WordsByGroup.Clear();
+
+        if (resplitList is null || resplitList.Count is 0) return;
+
+        foreach (var list in resplitList)
+        {
+            WordsByGroup.Add(new StylizedWords
+            {
+                Words = list
+            });
         }
     }
 
@@ -80,11 +112,11 @@ public partial class Words
     {
         public string WordToMemorize { get; set; }
         public string WordBootstrapClass { get; set; }
+        public int GroupId { get; set; }
     }
 
     private sealed class StylizedWords
     {
-        public int GroupId { get; set; }
         public List<WordDetail> Words { get; set; }
     }
 }

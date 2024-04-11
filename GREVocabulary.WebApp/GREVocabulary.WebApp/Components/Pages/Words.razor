@@ -36,7 +36,10 @@
     </div>
     <div class="row pt-2">
         <div class="col-md-3">
-            <button class="btn btn-warning btn-sm" @onclick="ShuffleWords">Shuffle Words within Group</button>
+            <button class="btn btn-warning btn-sm" @onclick="ShuffleWordsWithinGroup">Shuffle Words within Group</button>
+        </div>
+        <div class="col-md-3">
+            <button class="btn btn-warning btn-sm" @onclick="ShuffleEverything">Shuffle Everything</button>
         </div>
     </div>
     <div class="row pt-4">
@@ -44,10 +47,10 @@
         {
             @foreach(var grouping in WordsByGroup)
             {
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <div class="card">
                         <div class="card-body">
-                            <h6 class="card-title">Group @grouping.GroupId</h6>
+                            <h6 class="card-title">Word Group</h6>
 
                             <table class="table">
                                 <tbody>
@@ -55,7 +58,7 @@
                                     {
                                         <tr>
                                             <div class="py-2">
-                                                <button @onkeypress="(e) => OnKeyPressed(e, word)" class="@word.WordBootstrapClass">@word.WordToMemorize</button>
+                                                <button @onkeypress="(e) => OnKeyPressed(e, word)" class="@word.WordBootstrapClass">G:@word.GroupId @word.WordToMemorize</button>
                                             </div>
                                         </tr>
                                     }

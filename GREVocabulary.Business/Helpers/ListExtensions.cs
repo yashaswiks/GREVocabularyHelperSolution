@@ -15,4 +15,27 @@ public static class ListExtensions
             list[n] = value;
         }
     }
+
+    public static List<List<T>> SplitList<T>(this List<T> list, int parts)
+    {
+        List<List<T>> dividedList = new List<List<T>>();
+        int chunkSize = list.Count / parts;
+        int remainder = list.Count % parts;
+        int index = 0;
+
+        for (int i = 0; i < parts; i++)
+        {
+            int size = chunkSize;
+            if (remainder > 0)
+            {
+                size++;
+                remainder--;
+            }
+
+            dividedList.Add(list.GetRange(index, size));
+            index += size;
+        }
+
+        return dividedList;
+    }
 }
