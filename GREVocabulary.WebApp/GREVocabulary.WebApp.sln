@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GREVocabulary.WebApp.Client", "GREVocabulary.WebApp.Client\GREVocabulary.WebApp.Client.csproj", "{65E01101-BF08-458B-A191-979037267F30}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GREVocabulary.WebApp", "GREVocabulary.WebApp\GREVocabulary.WebApp.csproj", "{03BAAA99-386D-4701-A24A-939B0A0859EB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{65E01101-BF08-458B-A191-979037267F30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65E01101-BF08-458B-A191-979037267F30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65E01101-BF08-458B-A191-979037267F30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65E01101-BF08-458B-A191-979037267F30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03BAAA99-386D-4701-A24A-939B0A0859EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03BAAA99-386D-4701-A24A-939B0A0859EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03BAAA99-386D-4701-A24A-939B0A0859EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03BAAA99-386D-4701-A24A-939B0A0859EB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8B0FCDAC-AB0B-48C6-B401-71CD791819BC}
+	EndGlobalSection
+EndGlobal

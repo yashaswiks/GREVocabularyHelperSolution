@@ -27,7 +27,7 @@ public partial class Words
         AllGroupIds = await _wordsRepository.GetAllGroupIds();
     }
 
-    private async Task PopulateWordsList()
+    private async Task PopulateWordsListAsync()
     {
         WordsByGroup.Clear();
         SessionWordResponses.Clear();
