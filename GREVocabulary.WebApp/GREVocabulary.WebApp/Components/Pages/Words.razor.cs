@@ -1,7 +1,9 @@
 using GREVocabulary.Business.Helpers;
 using GREVocabulary.Business.Repository.IRepository;
+using GREVocabulary.Business.Service.IService;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.JSInterop;
 
 namespace GREVocabulary.WebApp.Components.Pages;
 
@@ -12,15 +14,26 @@ public partial class Words
 
     [Inject]
     private ISpacedRepetitionSessionsRepository _spacedRepetitionSessionsRepository { get; set; }
-    [Inject]
 
+    [Inject]
     private ISessionDetailsRepository _sessionDetailsRepository { get; set; }
+
+    [Inject]
+    private IDictionaryApiService _dictionaryApiService { get; set; }
+
+    [Inject]
+    private IWordMeaningRepository _wordMeaningRepository { get; set; }
+
+    [Inject]
+    private IJSRuntime _jSRuntime { get; set; }
 
     private List<StylizedWords> WordsByGroup { get; set; } = new();
     private List<int> AllGroupIds { get; set; } = new();
     private int StartingGroupId { get; set; }
     private int EndingGroupId { get; set; }
     private List<SessionWordResponse> SessionWordResponses { get; set; } = new();
+    public List<string> Meanings { get; set; } = new();
+    public bool IsLoading { get; set; } = false;
 
     protected override async Task OnInitializedAsync()
     {
@@ -139,7 +152,7 @@ public partial class Words
         }
     }
 
-    private void OnKeyPressed(KeyboardEventArgs e, WordDetail wordDetail)
+    private async Task OnKeyPressed(KeyboardEventArgs e, WordDetail wordDetail)
     {
         if (e.Key == "g" || e.Key == "G")
         {
@@ -185,6 +198,30 @@ public partial class Words
         }
         else if (e.Key == "w" || e.Key == "W")
         {
+            wordDetail.WordBootstrapClass = "btn btn-light";
+        }
+        else if (e.Key == "d" || e.Key == "D")
+        {
+            Meanings = new();
+            await _jSRuntime.InvokeVoidAsync("openModal");
+            IsLoading = true;
+            StateHasChanged();
+            var meanings = await _wordMeaningRepository.GetMeaningsAsync(wordDetail?.WordToMemorize);
+            if (meanings is null || meanings.Count is 0)
+            {
+                var affectedRows = await _wordMeaningRepository.InsertAsync(wordDetail?.WordToMemorize);
+                if (affectedRows.Value > 0)
+                {
+                    meanings = new();
+                    meanings = await _wordMeaningRepository.GetMeaningsAsync(wordDetail?.WordToMemorize);
+                }
+            }
+
+            Meanings = new();
+            Meanings = meanings;
+            IsLoading = false;
+            StateHasChanged();
+
             wordDetail.WordBootstrapClass = "btn btn-light";
         }
     }

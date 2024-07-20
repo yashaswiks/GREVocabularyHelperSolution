@@ -4,6 +4,18 @@
 <PageTitle>Words</PageTitle>
 <h3>Words</h3>
 
+<script>
+    var editProposedUtilizationsModal = document.getElementById('wordMeaningModal')
+    editProposedUtilizationsModal.addEventListener('shown.bs.modal', function () {
+        editProposedUtilizationsModal.focus()
+    })
+
+    function openModal() {
+        var myModal = new bootstrap.Modal(document.getElementById('wordMeaningModal'));
+        myModal.show();
+    }
+</script>
+
 
 <div class="container">
     <div class="row">
@@ -84,6 +96,34 @@
     <div class="row pt-4">
         <div class="col-md-3">
             <button class="btn btn-success" @onclick="SaveSessionDetailsAsync">Save Session Details</button>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="wordMeaningModal" tabindex="-1" aria-labelledby="wordMeaningModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Meaning</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @if(IsLoading)
+                {
+                    <div class="spinner-border text-primary" role="status">
+                    </div>
+                }
+                else if(Meanings?.Count > 0)
+                {
+                    <ul class="list-group">
+                        @foreach (var meaning in Meanings)
+                        {
+                            <li class="list-group-item">@meaning</li>
+                        }
+                    </ul>
+                }
+            </div>
         </div>
     </div>
 </div>

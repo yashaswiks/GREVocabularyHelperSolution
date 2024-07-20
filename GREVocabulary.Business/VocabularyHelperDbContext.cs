@@ -11,6 +11,7 @@ public class VocabularyHelperDbContext : DbContext
     public DbSet<Word> Words { get; set; }
     public DbSet<SpacedRepetitionSession> SpacedRepetitionSessions { get; set; }
     public DbSet<SessionDetail> SessionDetails { get; set; }
+    public DbSet<WordMeaning> WordMeanings { get; set; }
 
     public VocabularyHelperDbContext(IConfiguration configuration)
     {

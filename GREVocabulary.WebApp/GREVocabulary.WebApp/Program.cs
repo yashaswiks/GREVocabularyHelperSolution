@@ -10,12 +10,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();
+builder.Services.AddHttpClient();
 
 builder.Services.AddScoped<IDatabaseOptions, DatabaseOptions>();
 builder.Services.AddScoped<IWordsRepository, WordsRepository>();
 builder.Services.AddScoped<IReadCsvService, ReadCsvService>();
 builder.Services.AddScoped<ISpacedRepetitionSessionsRepository, SpacedRepetitionSessionsRepository>();
 builder.Services.AddScoped<ISessionDetailsRepository, SessionDetailsRepository>();
+builder.Services.AddScoped<IDictionaryApiService, DictionaryApiService>();
+builder.Services.AddScoped<IWordMeaningRepository, WordMeaningRepository>();
 
 var app = builder.Build();
 
